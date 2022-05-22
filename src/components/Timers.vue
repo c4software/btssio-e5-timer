@@ -4,7 +4,7 @@ defineProps<{ etudiant: string }>()
 
 let step = ref("preparation")
 let running = ref(false)
-const timer = ref({
+const timer: any = ref({
     "preparation": 1800,
     "realisation": 3600,
     "presentation": 1800,
