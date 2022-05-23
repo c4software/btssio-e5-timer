@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { ref, computed, watch } from 'vue'
+import Card from './Card.vue'
 defineProps<{ etudiant: string }>()
 
-let step = ref("preparation")
+let step = ref("")
 let running = ref(false)
 const timer: any = ref({
     "preparation": 1800,
@@ -18,8 +19,14 @@ const buttonName = computed(() => {
 
 const btnClass = computed(() => running.value ? 'fixed-width px-3 py-2 text-xs font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800' : 'fixed-width px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800')
 
-function toggleTimer(){
-    running.value = !running.value
+function toggleTimer(targetStep: string){
+    if(step.value == targetStep && running.value){
+        running.value = false
+    } else {
+        running.value = true
+    }
+
+    step.value = targetStep
 }
 
 const timeInterval = ref();
@@ -33,30 +40,24 @@ watch(running, (value) => {
     }
 })
 
-function fancyTimeFormat(s: number)
+function fancyTimeFormat(s: number): string
 {   
     if(s < 0){
-        return s;
+        return s.toString();
     }
 
     return(s-(s%=60))/60+(9<s?':':':0')+s
-
 }
 
 </script>
 
 <template>
-
-    <tr>
-        <td>{{etudiant}}</td>
-        <td @click="step = 'preparation'" :class="step === 'preparation' ? 'font-bold' : 'pointer'"><div class="text-xl">{{fancyTimeFormat(timer.preparation)}}</div></td>
-        <td @click="step = 'realisation'" :class="step === 'realisation' ? 'font-bold' : 'pointer'"><div class="text-xl">{{fancyTimeFormat(timer.realisation)}}</div></td>
-        <td @click="step = 'presentation'" :class="step === 'presentation' ? 'font-bold' : 'pointer'"><div class="text-xl">{{fancyTimeFormat(timer.presentation)}}</div></td>
-        <td>
-            <button @click="toggleTimer" type="button" :class="btnClass">{{buttonName}}</button>
-        </td>
-    </tr>
-
+    <h3 class="text-left">{{etudiant}}</h3>
+    <div class="grid gap-6 mb-8 md:grid-cols-3 xl:grid-cols-3">
+        <Card class="pointer" @click="toggleTimer('preparation')" :active="running && step === 'preparation'" title="Preparation" :value="fancyTimeFormat(timer.preparation)"></Card>
+        <Card class="pointer" @click="toggleTimer('realisation')" :active="running && step === 'realisation'" title="Réalisation" :value="fancyTimeFormat(timer.realisation)"></Card>
+        <Card class="pointer" @click="toggleTimer('presentation')" :active="running && step === 'presentation'" title="Presentation" :value="fancyTimeFormat(timer.presentation)"></Card>
+    </div>
 </template>
 
 <style scoped>
