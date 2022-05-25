@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, useCssModule } from 'vue'
+import { ref } from 'vue'
 import Timers from './components/Timers.vue';
 
 const etudiants = ref([] as string[]);
