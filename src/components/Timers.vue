@@ -3,6 +3,7 @@ import { ref, computed, watch } from 'vue'
 import Card from './Card.vue'
 defineProps<{ etudiant: string }>()
 
+let addedAt = new Date()
 let step = ref("")
 let running = ref(false)
 const timer: any = ref({
@@ -12,7 +13,7 @@ const timer: any = ref({
 })
 
 const hasRemainingTime = computed(() => timer.value[step.value] > 0)
-
+const addedAtFormated = computed(() => addedAt.toLocaleTimeString("fr-FR", {hour: '2-digit', minute:'2-digit', hour12: false}))
 const buttonName = computed(() => {
     return running.value ? 'Stop' : 'Demarrer'
 })
@@ -52,7 +53,7 @@ function fancyTimeFormat(s: number): string
 </script>
 
 <template>
-    <h3 class="text-left">{{etudiant}}</h3>
+    <h3 class="text-left">À {{addedAtFormated}} : {{etudiant}}</h3>
     <div class="grid mb-8 gap-3 md:gap-6 grid-cols-3 md:grid-cols-3">
         <Card class="pointer" @click="toggleTimer('preparation')" :active="running && step === 'preparation'" title="Preparation" :value="fancyTimeFormat(timer.preparation)"></Card>
         <Card class="pointer" @click="toggleTimer('realisation')" :active="running && step === 'realisation'" title="Réalisation" :value="fancyTimeFormat(timer.realisation)"></Card>
