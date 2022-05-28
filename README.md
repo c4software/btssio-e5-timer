@@ -4,6 +4,7 @@
 
 - Disponible à l'adresse suivante : <https://sio-e5-timer.netlify.app/>
 - Disponible en IPFS : <https://ipfs.fleek.co/ipfs/QmevwKppHAGBfdVQLmTRvm8A3XBdoqCCwYjABz6wCcVu6J>
+- IPNS : [ipns://e5.brosseau.ovh/](ipns://e5.brosseau.ovh/)
 - Hash IPFS : [ipfs://QmevwKppHAGBfdVQLmTRvm8A3XBdoqCCwYjABz6wCcVu6J](ipfs://QmevwKppHAGBfdVQLmTRvm8A3XBdoqCCwYjABz6wCcVu6J)
 
 IPFS disponible par Brave :
