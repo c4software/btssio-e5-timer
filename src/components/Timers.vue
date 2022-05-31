@@ -8,6 +8,7 @@ let step = ref("")
 let running = ref(false)
 const timer: any = ref({
     "preparation": 1800,
+    "entretien": 1200,
     "realisation": 3600,
     "recettage": 1200,
 })
@@ -56,6 +57,7 @@ function fancyTimeFormat(s: number): string
     <h3 class="text-left">À {{addedAtFormated}} : {{etudiant}}</h3>
     <div class="grid mb-8 gap-3 md:gap-6 grid-cols-3 md:grid-cols-3">
         <Card class="pointer" @click="toggleTimer('preparation')" :active="running && step === 'preparation'" title="Preparation" :value="fancyTimeFormat(timer.preparation)"></Card>
+        <Card class="pointer" @click="toggleTimer('entretien')" :active="running && step === 'entretien'" title="Entretien" :value="fancyTimeFormat(timer.entretien)"></Card>
         <Card class="pointer" @click="toggleTimer('realisation')" :active="running && step === 'realisation'" title="Réalisation" :value="fancyTimeFormat(timer.realisation)"></Card>
         <Card class="pointer" @click="toggleTimer('recettage')" :active="running && step === 'recettage'" title="Recettage" :value="fancyTimeFormat(timer.recettage)"></Card>
     </div>
