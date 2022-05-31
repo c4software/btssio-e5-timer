@@ -9,7 +9,7 @@ let running = ref(false)
 const timer: any = ref({
     "preparation": 1800,
     "realisation": 3600,
-    "presentation": 1800,
+    "Recettage": 1200,
 })
 
 const hasRemainingTime = computed(() => timer.value[step.value] > 0)
