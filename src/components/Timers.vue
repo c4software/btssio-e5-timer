@@ -9,7 +9,7 @@ let running = ref(false)
 const timer: any = ref({
     "preparation": 1800,
     "realisation": 3600,
-    "Recettage": 1200,
+    "recettage": 1200,
 })
 
 const hasRemainingTime = computed(() => timer.value[step.value] > 0)
@@ -57,7 +57,7 @@ function fancyTimeFormat(s: number): string
     <div class="grid mb-8 gap-3 md:gap-6 grid-cols-3 md:grid-cols-3">
         <Card class="pointer" @click="toggleTimer('preparation')" :active="running && step === 'preparation'" title="Preparation" :value="fancyTimeFormat(timer.preparation)"></Card>
         <Card class="pointer" @click="toggleTimer('realisation')" :active="running && step === 'realisation'" title="Réalisation" :value="fancyTimeFormat(timer.realisation)"></Card>
-        <Card class="pointer" @click="toggleTimer('presentation')" :active="running && step === 'presentation'" title="Presentation" :value="fancyTimeFormat(timer.presentation)"></Card>
+        <Card class="pointer" @click="toggleTimer('recettage')" :active="running && step === 'recettage'" title="Recettage" :value="fancyTimeFormat(timer.recettage)"></Card>
     </div>
 </template>
 
