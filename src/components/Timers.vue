@@ -15,12 +15,7 @@ const timer: any = ref({
     "recettage": 1200,
 })
 
-const hasRemainingTime = computed(() => timer.value[step.value] > 0)
 const addedAtFormated = computed(() => addedAt.toLocaleTimeString("fr-FR", {hour: '2-digit', minute:'2-digit', hour12: false}))
-const buttonName = computed(() => {
-    return running.value ? 'Stop' : 'Demarrer'
-})
-
 const btnClass = computed(() => running.value ? 'fixed-width px-3 py-2 text-xs font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800' : 'fixed-width px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800')
 
 function toggleTimer(targetStep: string){
@@ -56,7 +51,7 @@ function fancyTimeFormat(s: number): string
 </script>
 
 <template>
-    <h3 class="text-left">
+    <h3 class="text-left dark:text-white font-bold text-xl">
         <Close @close="$emit('finish')" />
         À {{addedAtFormated}} : {{etudiant}}
     </h3>
