@@ -18,7 +18,6 @@ function addStudent(){
 function removeStudent(key: any){
   delete etudiants.value[key];
 }
-
 </script>
 
 <template>

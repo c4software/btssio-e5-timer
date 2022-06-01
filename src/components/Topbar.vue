@@ -21,7 +21,8 @@
 <script lang="ts" setup>
 
     function toggleDark(){
-        document.documentElement.classList.toggle("dark")
+        document.documentElement.classList.toggle("dark");
+        localStorage.setItem("htmlClass", document.documentElement.className);
     }
 
 </script>
