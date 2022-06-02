@@ -17,10 +17,10 @@ defineProps<{ title: string, value: string, active: boolean }>()
             </svg>
         </div>
         <div>
-            <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+            <p class="mb-2 text-sm font-medium text-gray-600 dark:text-white">
                 {{title}}
             </p>
-            <p :class="{'text-4xl': true, 'font-semibold': active, 'text-gray-700': true, 'dark:text-gray-200': true}">
+            <p :class="{'text-4xl': true, 'font-semibold': active, 'text-gray-700': true, 'dark:text-white': true}">
                 {{value}}
             </p>
         </div>
