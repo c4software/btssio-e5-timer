@@ -2,9 +2,9 @@
 import { ref, computed, watch } from 'vue'
 import Card from './Card.vue'
 import Close from './Close.vue';
-defineProps<{ etudiant: string }>()
 defineEmits(['finish'])
 
+const props = defineProps<{ etudiant: string, isTiersTemps: boolean }>()
 let addedAt = new Date()
 let step = ref("")
 let running = ref(false)
@@ -15,8 +15,13 @@ const timer: any = ref({
     "recettage": 1200,
 })
 
+if(props.isTiersTemps){
+    for (const key in timer.value) {
+        timer.value[key] = timer.value[key] + (timer.value[key] / 3)
+    }
+}
+
 const addedAtFormated = computed(() => addedAt.toLocaleTimeString("fr-FR", {hour: '2-digit', minute:'2-digit', hour12: false}))
-const btnClass = computed(() => running.value ? 'fixed-width px-3 py-2 text-xs font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800' : 'fixed-width px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800')
 
 function toggleTimer(targetStep: string){
     if(step.value == targetStep && running.value){
@@ -42,9 +47,10 @@ watch(running, (value) => {
 function fancyTimeFormat(s: number): string
 {   
     if(s < 0){
-        return s.toString();
+        s = Math.abs(s)
+        return '-' + fancyTimeFormat(s)
     }
-
+    
     return(s-(s%=60))/60+(9<s?':':':0')+s
 }
 
