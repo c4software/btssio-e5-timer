@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { ref, computed, watch } from 'vue'
 
-defineProps<{ title: string, value: string, active: boolean }>()
+defineProps<{ title: string, value: string, active: boolean, targetTime: string }>()
 
 </script>
 
@@ -22,7 +22,17 @@ defineProps<{ title: string, value: string, active: boolean }>()
             </p>
             <p :class="{'text-4xl': true, 'font-semibold': active, 'text-gray-700': true, 'dark:text-white': true}">
                 {{value}}
+                <span class="small">{{ targetTime }}</span>
             </p>
         </div>
     </div>
 </template>
+
+<style scoped>
+
+.small {
+    font-size: 0.5em;
+    display: block;
+}
+
+</style>
