@@ -37,7 +37,12 @@ function toggleTimer(targetStep: string){
         running.value = true
     }
 
-    endTime.value[targetStep] = formatEndDate(timer.value[targetStep])
+    // Si il ne reste plus de temps, on ne fait rien
+    if(timer.value[targetStep]>0){
+        endTime.value[targetStep] = formatEndDate(timer.value[targetStep])
+    } else {
+        endTime.value[targetStep] = "--:--"
+    }
 
     step.value = targetStep
 }
