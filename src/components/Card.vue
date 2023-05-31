@@ -33,6 +33,7 @@ defineProps<{ title: string, value: string, active: boolean, targetTime: string 
 .small {
     font-size: 0.5em;
     display: block;
+    text-align: left;
 }
 
 </style>
