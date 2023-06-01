@@ -70,7 +70,8 @@ function fancyTimeFormat(s: number): string
 
 function formatEndDate(s: number): string
 {   
-    let date = new Date()
+    let date = new Date(new Date().getTime() + s * 1000)
+
     return date.toLocaleTimeString("fr-FR", {hour: '2-digit', minute:'2-digit', hour12: false})
 }
 
